@@ -24,6 +24,22 @@ config GLX_PROVIDER_IMX6
 
 endchoice
 
+choice VDPAU_PROVIDER
+  prompt \"VDPAU\"
+  depends on USE_vdpau
+  default VDPAU_PROVIDER_MESA
+
+config VDPAU_PROVIDER_MESA
+  bool \"Mesa\"
+  select PKG_mesa
+
+config VDPAU_PROVIDER_SUNXI
+  bool \"Sunxi\"
+  select PKG_libvdpau-sunxi
+  depends on ( TARGET_PLATFORM_arm_a10 || TARGET_PLATFORM_arm_a20 )
+
+endchoice
+
 choice EGL_PROVIDER
   prompt \"EGL\"
   depends on USE_egl
@@ -292,6 +308,10 @@ PKG_USE_SECTION_egl="hwaccel"
 PKG_USE_NAME_glx="GLX"
 PKG_USE_SECTION_glx="hwaccel"
 
+# vdpau
+PKG_USE_NAME_vdpau="VDPAU"
+PKG_USE_SECTION_vdpau="hwaccel"
+
 # External FFmpeg
 PKG_USE_NAME_externalffmpeg="external FFmpeg"
 
@@ -470,11 +490,6 @@ PKG_USE_SECTION_v4l="multimedia"
 # vaapi
 PKG_USE_NAME_vaapi="VA API"
 PKG_USE_SECTION_vaapi="hwaccel"
-
-# vdpau
-PKG_USE_NAME_vdpau="VDPAU"
-PKG_USE_SECTION_vdpau="hwaccel"
-PKG_USE_ARCH_vdpau="i386 x86_64"
 
 # vlc
 PKG_USE_NAME_vlc="VLC"
