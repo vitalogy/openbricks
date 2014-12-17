@@ -68,11 +68,11 @@ if [ "$TARGET_MACHINE" = pandaboard ]; then
   EXTRA_CONFIG="$EXTRA_CONFIG --enable-player=gstplayer"
 fi
 
-if [ "$TARGET_PLATFORM" = a10 ] || [ "$TARGET_PLATFORM" = a20 ]; then
+#if [ "$TARGET_PLATFORM" = a10 ] || [ "$TARGET_PLATFORM" = a20 ]; then
   #export CEDARLIBS="-lcedarv -lvecore"
-  export CEDARLIBS="-lcedarx"
-  EXTRA_CONFIG="$EXTRA_CONFIG --with-platform=allwinner-a10"
-fi
+  #export CEDARLIBS="-lcedarx"
+  #EXTRA_CONFIG="$EXTRA_CONFIG --with-platform=allwinner-a10"
+#fi
 
 if [ "$TARGET_PLATFORM" = imx6 ]; then
   EXTRA_CONFIG="$EXTRA_CONFIG --enable-codec=imxvpu"
@@ -116,7 +116,7 @@ if [ "$TARGET_MACHINE" = pandaboard ] || [ "$TARGET_MACHINE" = cubox ] || [ "$TA
    [ "$TARGET_PLATFORM" = a10 ] || [ "$TARGET_PLATFORM" = a20 ] || [ "$TARGET_PLATFORM" = imx6 ] ; then
   EXTRA_CONFIG="$EXTRA_CONFIG --enable-texturepacker"
   export TEXTUREPACKER_NATIVE_ROOT=$USE_TEXTUREPACKER_NATIVE_ROOT
-else 
+else
   EXTRA_CONFIG="$EXTRA_CONFIG --disable-texturepacker"
 fi
 
